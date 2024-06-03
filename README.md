@@ -39,6 +39,9 @@ $ cd product
 # Run the app
 $ go run ./cmd/main.go
 
+# make sure you create db_product and import the sql file
+# you can find the sqlschema.sql in "documentasi" folder
+
 # if you have problem on running
 # try Install dependencies
 $ go get
@@ -52,6 +55,7 @@ $ source .env
 
 > **Note**
 > Make sure you all ready create database for this app see local `.env` file.
+> import the sql file sqlschema.sql in documentasi folder
 > the database name is `db_product` 
 > sqlschema.sql in documentasi folder
 
@@ -62,7 +66,7 @@ $ source .env
 Product
 | Methode       | End Point       | used for               
 | ------------- | -------------   | -----------          
-| `GET`         | /allpost       | Get All Post      | NO
+| `GET`         | /v1/product       | Get All Product     
 
 
 ## Swagger
