@@ -8,6 +8,8 @@ import (
 	docs "productApp/docs"
 	response "productApp/response"
 
+	ProductRoutes "productApp/app/product/route"
+
 	"github.com/gin-gonic/gin"
 	"github.com/jmoiron/sqlx"
 	"github.com/spf13/viper"
@@ -26,10 +28,13 @@ func NewApp(db *sqlx.DB) *App {
 func (app *App) Run() {
 	r := gin.Default()
 
-	docs.SwaggerInfo.BasePath = "/api/v1"
+	docs.SwaggerInfo.BasePath = ""
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 
 	r.Use(middleware.CorsMiddleware())
+
+	productRoute := r.Group("")
+	ProductRoutes.RegisterProductRoutes(productRoute, app.db)
 
 	// Health Check
 	r.GET("/health", func(c *gin.Context) {
